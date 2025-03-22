@@ -90,6 +90,8 @@ Learn More
 
 Spring Boot dependency--https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
 
+Redis Installations -- https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/
+
 Contributions
 
 Feel free to submit pull requests or open issues for improvements! 
