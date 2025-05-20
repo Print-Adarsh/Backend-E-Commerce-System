@@ -64,28 +64,6 @@ DELETE	/products/{id}	Delete a product
 
 GET	/ping	Health check
 
-Folder Structure
-src
- ├── main
- 
- │   ├── java/com/example/projectname
- 
- │   │   ├── controller      # Controllers (API Endpoints)
- 
- │   │   ├── dto             # Data Transfer Objects
- 
- │   │   ├── model           # Database Entities
- 
- │   │   ├── repository      # JPA Repositories
- 
- │   │   ├── service         # Business Logic Layer
- 
- │   │   ├── exception       # Custom Exception Handling
- 
- │   ├── resources
- 
- │   │   ├── application.properties  # Configuration Files
-
 Learn More
 
 Spring Boot dependency--https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
