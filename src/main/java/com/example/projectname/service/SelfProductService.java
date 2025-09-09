@@ -64,8 +64,8 @@ public class SelfProductService implements ProductService {
     @Override
 
     public List<Product> getAllProducts() {
-        ProductProjection response = (ProductProjection) productRepo.getProductNameByTitle("phone samsung");
-        System.out.println("Fetched product : " + response.getDescription() + " " + response.getTitle());
+//        ProductProjection response = (ProductProjection) productRepo.getProductNameByTitle("phone samsung");
+//        System.out.println("Fetched product : " + response.getDescription() + " " + response.getTitle());
         return productRepo.findAll();
     }
 //    public List<Product> getAllProducts() {

@@ -1,11 +1,14 @@
 package com.example.projectname.Controller;
 
 import com.example.projectname.dto.CreateProductRequestDto;
+import com.example.projectname.dto.UserDto;
 import com.example.projectname.exception.ProductNotFoundException;
+import com.example.projectname.exception.UnAuthorizedException;
 import com.example.projectname.model.Product;
 import com.example.projectname.service.FakeStoreProductService;
 import com.example.projectname.service.ProductService;
 import com.example.projectname.service.SelfProductService;
+import com.example.projectname.utils.AuthUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -37,9 +40,10 @@ public class ProductController {
         this.service = inputService;
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/{id}/{token}")
     @Cacheable(value = "product", key = "#id")
-    public Product getProductById(@PathVariable("id") Integer id) throws ProductNotFoundException {
+    public Product getProductById(@PathVariable("id") Integer id,@PathVariable String token) throws ProductNotFoundException, UnAuthorizedException {
+       // public Product getProductById(@PathVariable("id") Integer id) throws ProductNotFoundException, UnAuthorizedException {
         if (id == 10000) {
             throw new IllegalArgumentException("Id should not be 10000");
         }
@@ -48,8 +52,19 @@ public class ProductController {
         if (product == null) {
             throw new ProductNotFoundException("Product not found");
         }
+//        // make a call to userservice to validate the token
+        UserDto userDto = AuthUtil.validateToken(token);
+        if(userDto == null) {
+            throw new UnAuthorizedException("you are not authirozed to access please logiin first");
+        }
+        // FOR UNIT TEST CASES
+//        Product product1=new Product();
+//        product.setId(id);
+//        product.setTitle("product controller is smart amnd create own not calling service");
+//        //System.out.println("DEBUG");
+//        return product1;
 
-        return product;
+        return product; //ye service walacall hai
     }
     @PostMapping("/products")
     @CachePut(value = "product", key = "#result.title")

@@ -1,5 +1,7 @@
 package com.example.projectname.dto;
 
+
+
 public class ErrorDTO {
     private String errorMsg;
     private String errorCode;
